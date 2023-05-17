@@ -45,20 +45,21 @@ func sanitizedUserDN(username string) (string, bool) {
         before, after, found := ss.Cut(username, "@")
         if found {
                 if after == "21vek.by" {
-                        username := before + "@21vek.local"
-                        log.Printf("\nUsername changed to: %s", username)
+                        userDN := before + "@21vek.local"
+                        log.Printf("\nUsername changed to: %s", userDN)
                 } else if after == "21vek.local" {
-                        log.Printf("\nUsername entered correctly: %s", username)
+                        userDN := before + "@21vek.local"
+                        log.Printf("\nUsername entered correctly: %s", userDN)
                 } else {
                         log.Printf("\nInvalid domain name: %s",after)
                 }
         } else {
-                username := username + "@21vek.local"
-                log.Printf("\nUsername changed to: ", username)
+                userDN := username + "@21vek.local"
+                log.Printf("\nUsername changed to: ", userDN)
         }
 
 
-        return username, true
+        return userDN, true
 }
 
 //func (ls *LDAPClient) sanitizedUserDN(username string) (string, bool) {
@@ -115,8 +116,9 @@ func ModifyPassword(ls *auth.Config, name, passwd, newPassword string) error {
         l, err := dial(ls)
         if err != nil {
                 return fmt.Errorf("LDAP Connect error, %s:%v", ls.Server, err)
+        } else {
+                log.Printf("\nСonnection successful!")
         }
-//      defer l.Close()
 
         var userDN string
         log.Printf("\nLDAP will bind directly via: %s", name)
@@ -126,7 +128,6 @@ func ModifyPassword(ls *auth.Config, name, passwd, newPassword string) error {
         if !ok {
                 return fmt.Errorf("Error sanitizing name %s", name)
         }
-//      bindUser(l, userDN, passwd)
         _, err2 := bindUser(l, userDN, passwd)
         if err2 != nil {
                 return fmt.Errorf("Auth for %s in server %s error: %v", userDN, ls.Server, err2)
