@@ -37,9 +37,10 @@ func bindUser(l *auth.Conn, userDN, passwd string) (bool, error) {
 
 func sanitizedUserDN(username string) (string, bool) {
         badCharacters := "\x00()*\\,='\"#+;<>"
+        userDN := ""
         if ss.ContainsAny(username, badCharacters) {
                 log.Printf("\n'%s' contains invalid DN characters. Aborting.", username)
-                return "", false
+                return userDN, false
         }
 
         before, after, found := ss.Cut(username, "@")
@@ -51,6 +52,7 @@ func sanitizedUserDN(username string) (string, bool) {
                         userDN := before + "@21vek.local"
                         log.Printf("\nUsername entered correctly: %s", userDN)
                 } else {
+                        return userDN, false
                         log.Printf("\nInvalid domain name: %s",after)
                 }
         } else {
