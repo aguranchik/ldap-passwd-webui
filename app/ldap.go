@@ -10,7 +10,7 @@ import (
         auth "github.com/korylprince/go-ad-auth/v3"
         "log"
         "fmt"
-        "os"
+//        "os"
         ss "strings"
 )
 
