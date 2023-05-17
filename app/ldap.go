@@ -48,19 +48,20 @@ func sanitizedUserDN(username string) (string, bool) {
                 if after == "21vek.by" {
                         userDN := before + "@21vek.local"
                         log.Printf("\nUsername changed to: %s", userDN)
+                        return userDN, true
                 } else if after == "21vek.local" {
                         userDN := before + "@21vek.local"
                         log.Printf("\nUsername entered correctly: %s", userDN)
+                        return userDN, true
                 } else {
-                        return userDN, false
                         log.Printf("\nInvalid domain name: %s",after)
+                        return userDN, false
                 }
         } else {
                 userDN := username + "@21vek.local"
                 log.Printf("\nUsername changed to: ", userDN)
+                return userDN, true
         }
-
-
         return userDN, true
 }
 
