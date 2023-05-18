@@ -10,7 +10,8 @@ func getTitle() string {
 }
 
 func getPattern() string {
-	return envStr("LPW_PATTERN", ".{8,}")
+//	return envStr("LPW_PATTERN", ".{8,}")
+	return envStr("LPW_PATTERN", "[A-Za-z0-9#$%!^]{8,}")
 }
 
 func getPatternInfo() string {
