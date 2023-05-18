@@ -133,13 +133,13 @@ func ModifyPassword(ls *auth.Config, name, passwd, newPassword string) error {
         } else {
                 log.Printf("\nSanitized %s successful!", userDN )
         }
-        _, err2 := bindUser(l, userDN, passwd)
-        if err2 != nil {
-                log.Printf("Auth for %s in server %s error: %v", userDN, ls.Server, err2)
-                return fmt.Errorf("Auth for %s in server %s error: %v", userDN, ls.Server, err2)
-        } else {
-                log.Printf("\nBound successful!")
-        }
+//        _, err2 := bindUser(l, userDN, passwd)
+//        if err2 != nil {
+//                log.Printf("Auth for %s in server %s error: %v", userDN, ls.Server, err2)
+//                return fmt.Errorf("Auth for %s in server %s error: %v", userDN, ls.Server, err2)
+//        } else {
+//                log.Printf("\nBound successful!")
+//        }
 
         log.Printf("\nLDAP will execute password change on: %s", userDN)
         err3 := auth.UpdatePassword(ls, userDN, passwd, newPassword)
