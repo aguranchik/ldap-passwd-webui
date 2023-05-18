@@ -115,7 +115,7 @@ func ModifyPassword(ls *auth.Config, name, passwd, newPassword string) error {
         if len(passwd) == 0 {
                 return fmt.Errorf("Auth failed for %s, password cannot be empty", name)
         }
-        l, err := dial(ls)
+        _, err := dial(ls)
         if err != nil {
                 return fmt.Errorf("LDAP Connect error, %s:%v", ls.Server, err)
         } else {
