@@ -76,7 +76,7 @@ func ServeIndex(w http.ResponseWriter, req *http.Request) {
 func ChangePassword(w http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
 	un := ""
-	username := req.Form["Имя пользователя"]
+	username := req.Form["username"]
 	oldPassword := req.Form["old-password"]
 	newPassword := req.Form["new-password"]
 	confirmPassword := req.Form["confirm-password"]
