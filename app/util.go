@@ -6,7 +6,7 @@ import (
 )
 
 func getTitle() string {
-	return envStr("LPW_TITLE", "Change your password on example.org")
+	return envStr("LPW_TITLE", "Change password in 21vek domain")
 }
 
 func getPattern() string {
@@ -14,7 +14,7 @@ func getPattern() string {
 }
 
 func getPatternInfo() string {
-	return envStr("LPW_PATTERN_INFO", "Password must be at least 8 characters long.")
+	return envStr("LPW_PATTERN_INFO", "The password must be at least 8 characters and contain uppercase and lowercase letters, numbers, special characters (3 out of 4 categories).")
 }
 
 func envStr(key, defaultValue string) string {
